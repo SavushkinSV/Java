@@ -17,13 +17,13 @@ public class Main {
         System.out.println("Переделанный массив: " + Arrays.toString(array));
     }
 
-    private static void halfSum(double[] mas) {
-        double[] tmp = new double[mas.length - 2];
-        for (int i = 0; i < mas.length - 2; i++) {
-            tmp[i] = (mas[i] + mas[i + 2]) / 2;
+    private static void halfSum(double[] array) {
+        double[] tmp = new double[array.length - 2];
+        for (int i = 0; i < array.length - 2; i++) {
+            tmp[i] = (array[i] + array[i + 2]) / 2;
         }
-        for (int i = 0; i < mas.length - 2; i++) {
-            mas[i + 1] = tmp[i];
+        for (int i = 0; i < array.length - 2; i++) {
+            array[i + 1] = tmp[i];
         }
     }
 }
