@@ -1,8 +1,8 @@
 package org.example;
 
 public class ThreadTwo implements Runnable {
-    private Thread thread;
-    private Monitor monitor;
+    private final Thread thread;
+    private final Monitor monitor;
 
     public Thread getThread() {
         return thread;
@@ -32,5 +32,4 @@ public class ThreadTwo implements Runnable {
             e.printStackTrace();
         }
     }
-
 }

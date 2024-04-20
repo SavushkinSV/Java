@@ -10,7 +10,6 @@ public class ThreadOne extends Thread {
     public void run() {
         try {
             for (int i = 0; i < TicTak.num; i++) {
-
                 synchronized (monitor) {
                     if (monitor.t1 == false) {
                         System.out.print(1 + " - ");
