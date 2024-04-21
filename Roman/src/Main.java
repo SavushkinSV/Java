@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -18,7 +17,7 @@ public class Main {
                     break;
                 }
                 case "2": {
-                    System.out.println("2");
+                    Roman.inputArabicNumber();
                     break;
                 }
                 case "exit": {

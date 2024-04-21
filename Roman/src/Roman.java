@@ -6,17 +6,19 @@ import java.util.regex.Pattern;
 
 public final class Roman {
     private final static Map<Character, Integer> symbolRomanToArabic;
+    private final static int[] arabicValues = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+    private final static String[] arabicSymbol = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
 
     static {
-        Map<Character, Integer> hashMap = new HashMap<>();
-        hashMap.put('I', 1);
-        hashMap.put('V', 5);
-        hashMap.put('X', 10);
-        hashMap.put('L', 50);
-        hashMap.put('C', 100);
-        hashMap.put('D', 500);
-        hashMap.put('M', 1000);
-        symbolRomanToArabic = Collections.unmodifiableMap(hashMap);
+        Map<Character, Integer> hashMapRoman = new HashMap<>();
+        hashMapRoman.put('I', 1);
+        hashMapRoman.put('V', 5);
+        hashMapRoman.put('X', 10);
+        hashMapRoman.put('L', 50);
+        hashMapRoman.put('C', 100);
+        hashMapRoman.put('D', 500);
+        hashMapRoman.put('M', 1000);
+        symbolRomanToArabic = Collections.unmodifiableMap(hashMapRoman);
     }
 
     private Roman() {
@@ -32,6 +34,35 @@ public final class Roman {
             convertRomanToArabic(inputString);
         } else {
             System.out.println("Введенная строка не является римским числом");
+        }
+    }
+
+    public static void inputArabicNumber() {
+        System.out.print("Введите число в арабской записи -> ");
+        Scanner scanner = new Scanner(System.in);
+        String inputString = scanner.nextLine();
+        if (isArabicNumber(inputString)) {
+            convertArabicToRoman(inputString);
+        } else {
+            System.out.println("Введенная строка не является арабским числом");
+        }
+    }
+
+    private static void convertArabicToRoman(String str) {
+        int current = Integer.parseInt(str);
+        if (current >= 4000) {
+            System.out.println("n/a");
+        } else if (current == 0) {
+            System.out.println(current + " -> " + "N");
+        } else {
+            System.out.print(current + " -> ");
+            for (int i = 0; i < arabicValues.length; i++) {
+                while (arabicValues[i] <= current) {
+                    System.out.print(arabicSymbol[i]);
+                    current -= arabicValues[i];
+                }
+            }
+            System.out.println();
         }
     }
 
@@ -70,6 +101,12 @@ public final class Roman {
 
     private static boolean isRomanNumber(String str) {
         String regex = "^(M{0,3})(D?C{0,3}|C[DM])(L?X{0,3}|X[LC])(V?I{0,3}|I[VX])$";
+
+        return Pattern.matches(regex, str);
+    }
+
+    private static boolean isArabicNumber(String str) {
+        String regex = "\\d+";
 
         return Pattern.matches(regex, str);
     }
