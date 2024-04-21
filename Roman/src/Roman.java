@@ -44,7 +44,7 @@ public final class Roman {
         if (isArabicNumber(inputString)) {
             convertArabicToRoman(inputString);
         } else {
-            System.out.println("Введенная строка не является арабским числом");
+            System.out.println("Введенная строка не является арабским числом в диапазоне [0, 3999]");
         }
     }
 
