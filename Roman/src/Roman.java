@@ -1,7 +1,6 @@
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public final class Roman {
@@ -24,45 +23,37 @@ public final class Roman {
     private Roman() {
     }
 
-    public static void inputRomanNumber() {
-        System.out.print("Введите число в римской записи -> ");
-        Scanner scanner = new Scanner(System.in);
-        String inputString = scanner.nextLine();
-        if (isRomanNULL(inputString)) {
-            System.out.println("0");
-        } else if (isRomanNumber(inputString)) {
-            convertRomanToArabic(inputString);
+    public static void convertRomanNumber(String str) {        
+        if (isRomanNULL(str)) {
+            System.out.print("0");
+        } else if (isRomanNumber(str)) {
+            convertRomanToArabic(str);
         } else {
-            System.out.println("Введенная строка не является римским числом");
+            System.out.print("n/a");
         }
     }
 
-    public static void inputArabicNumber() {
-        System.out.print("Введите число в арабской записи -> ");
-        Scanner scanner = new Scanner(System.in);
-        String inputString = scanner.nextLine();
-        if (isArabicNumber(inputString)) {
-            convertArabicToRoman(inputString);
+    public static void convertArabicNumber(String str) {
+        if (isArabicNumber(str)) {
+            convertArabicToRoman(str);
         } else {
-            System.out.println("Введенная строка не является арабским числом в диапазоне [0, 3999]");
+            System.out.print("n/a");
         }
     }
 
     private static void convertArabicToRoman(String str) {
         int current = Integer.parseInt(str);
         if (current >= 4000) {
-            System.out.println("n/a");
+            System.out.print("n/a");
         } else if (current == 0) {
-            System.out.println(current + " -> " + "N");
+            System.out.print("N");
         } else {
-            System.out.print(current + " -> ");
             for (int i = 0; i < arabicValues.length; i++) {
                 while (arabicValues[i] <= current) {
                     System.out.print(arabicSymbol[i]);
                     current -= arabicValues[i];
                 }
             }
-            System.out.println();
         }
     }
 
@@ -77,7 +68,7 @@ public final class Roman {
                 result += arabic;
             }
         }
-        System.out.println(str + " -> " + result);
+        System.out.print(result);
     }
 
     private static int getArabic(char c) {
