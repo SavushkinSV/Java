@@ -17,7 +17,7 @@ public class MorseTest {
     }
 
     @Test
-    public void testConvertMorseToString() {
+    public void testConvertStringToMorse() {
         Map<String, String> testMap = new HashMap<>();
         testMap.put("SOS", "... --- ...\n");
         testMap.put("S(", "n/a\n");
@@ -40,4 +40,19 @@ public class MorseTest {
         }
     }
 
+    @Test
+    public void testConvertMorseToString() {
+        Map<String, String> testMap = new HashMap<>();
+        testMap.put("... --- ...", "SOS\n");
+        testMap.put(".... . .-.. .-.. ---\t.-- --- .-. .-.. -..", "HELLO WORLD\n");
+        testMap.put(".. -.\t.-- . . -.-\t--...\t-.. .- -.-- ...", "IN WEEK 7 DAYS\n");
+        testMap.put("...-.. -.", "n/a\n");
+        testMap.put("...x- -.", "n/a\n");
+
+        for (Map.Entry<String, String> entry : testMap.entrySet()) {
+            Morse.convertMorseToString(entry.getKey());
+            Assertions.assertEquals(entry.getValue(), output.toString());
+            output.reset();
+        }
+    }
 }

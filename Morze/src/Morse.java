@@ -77,15 +77,22 @@ public class Morse {
     public static void convertMorseToString(String str) {
         StringBuilder stringBuilder = new StringBuilder();
         boolean errorDecoding = false;
-        String[] split = str.split(" ");
-        for (int i = 0; i < split.length; i++) {
-            errorDecoding = true;
-            for (Map.Entry<Character, String> entry : morseAlphabet.entrySet()) {
-                if (split[i].equals(entry.getValue())) {
-                    stringBuilder.append(entry.getKey());
-                    errorDecoding = false;
-                    break;
+        String[] splitStrings = str.split("\t");
+        for (int i = 0; i < splitStrings.length; i++) {
+            String[] splitSymbols = splitStrings[i].split(" ");
+            if (i != 0) {
+                stringBuilder.append(" ");
+            }
+            for (int j = 0; j < splitSymbols.length; j++) {
+                errorDecoding = true;
+                for (Map.Entry<Character, String> entry : morseAlphabet.entrySet()) {
+                    if (splitSymbols[j].equals(entry.getValue())) {
+                        stringBuilder.append(entry.getKey());
+                        errorDecoding = false;
+                        break;
+                    }
                 }
+                if (errorDecoding) break;
             }
             if (errorDecoding) break;
         }

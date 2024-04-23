@@ -19,7 +19,7 @@ public class Main {
                 }
                 case "2": {
                     String input = scanner.nextLine();
-
+                    Morse.convertMorseToString(input);
                     break;
                 }
                 case "0": {
