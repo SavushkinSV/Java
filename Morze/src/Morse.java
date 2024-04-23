@@ -48,14 +48,19 @@ public class Morse {
     }
 
     public static void convertStringToMorse(String str) {
+        String currentString = str.toUpperCase();
         StringBuilder stringBuilder = new StringBuilder();
         boolean errorDecoding = false;
         for (int i = 0; i < str.length(); i++) {
             errorDecoding = true;
             for (Map.Entry<Character, String> entry : morseAlphabet.entrySet()) {
-                if (entry.getKey() == str.charAt(i)) {
+                if (entry.getKey() == currentString.charAt(i)) {
+                    if (i != 0 && entry.getKey() != ' ') {
+                        if (stringBuilder.charAt(stringBuilder.length() - 1) != '\t') {
+                            stringBuilder.append(' ');
+                        }
+                    }
                     stringBuilder.append(entry.getValue());
-                    stringBuilder.append(" ");
                     errorDecoding = false;
                     break;
                 }

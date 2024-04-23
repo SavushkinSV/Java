@@ -14,12 +14,12 @@ public class Main {
             switch (str) {
                 case "1": {
                     String input = scanner.nextLine();
-                    Morse.convertMorseToString(input.toUpperCase());
+                    Morse.convertStringToMorse(input);
                     break;
                 }
                 case "2": {
                     String input = scanner.nextLine();
-                    Morse.convertStringToMorse(input.toUpperCase());
+
                     break;
                 }
                 case "0": {
